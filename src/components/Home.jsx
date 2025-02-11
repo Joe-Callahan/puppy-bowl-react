@@ -1,30 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const HomePage = () => {
-  const [allPuppies, setAllPuppies] = useState([]);
-
-  useEffect (() => {
-    const getPuppies = async() => {
-      const response = await fetch ('https://fsa-puppy-bowl.herokuapp.com/api/2501-ftb-et-web-ft/players');
-      const jsonObj = await response.json();
-      setAllPuppies(jsonObj.data.players);
-    }
-    getPuppies();
-  }, [])
- 
+const HomePage = (props) => {
+  const [selectedPuppy, setSelectedPuppy] = useState({});
+  console.log(selectedPuppy);
   return (
     <>
       <h1>Welcome to The Puppy Bowl!</h1>
         {
-          allPuppies.map((singlePuppy) => {
+          props.allPuppies.map((singlePuppy) => {
             return (
               <>
                 <div id="homeContainer">
-                  <Link key={singlePuppy.id} to={`/${singlePuppy.id}`}>
-                    <div className="homePuppyContainer">
-                      <img 
-                        src={ singlePuppy.imageUrl } 
+                  <Link key={singlePuppy.id} to={`/details/${singlePuppy.id}`} />
+                    <div className="homePuppyContainer"
+                      onClick={(event) => { setSelectedPuppy(event.target.value) }}>
+                      <img
+                        src={ singlePuppy.imageUrl }
                         alt={ `image of ${singlePuppy.name}` }
                         className = "homePuppyImage"
                       />
