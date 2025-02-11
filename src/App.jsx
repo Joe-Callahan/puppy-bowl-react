@@ -6,6 +6,7 @@ import PuppyDetails from './components/PuppyDetails.jsx'
 
 const App = () => {
   const [allPuppies, setAllPuppies] = useState([]);
+  const [selectedPuppy, setSelectedPuppy] = useState({});
 
   useEffect (() => {
     const getPuppies = async() => {
@@ -16,11 +17,15 @@ const App = () => {
     getPuppies();
   }, [])
 
+  console.log(selectedPuppy);
+
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomePage allPuppies = {allPuppies} />} />
-        <Route path='/details/:id' element={<PuppyDetails allPuppies = {allPuppies} />} />
+        <Route path='/' 
+          element={<HomePage allPuppies = {allPuppies} setSelectedPuppy = {setSelectedPuppy} />} />
+        <Route path={`/details/${selectedPuppy}`}
+          element={<PuppyDetails selectedPuppy = {selectedPuppy} />} />
       </Routes>
     </>
   )

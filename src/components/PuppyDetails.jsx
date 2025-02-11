@@ -1,7 +1,7 @@
 const PuppyDetails = (props) => {
- console.log(props.allPuppies);
+ console.log(props.selectedPuppy);
   return (
-    <h1>{props.allPuppies.name}</h1>
+    <h1>{props.selectedPuppy.name}</h1>
   )
 }
 
