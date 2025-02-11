@@ -1,8 +1,10 @@
+import HomePage from './components/Home.jsx'
+
 const App = () => {
 
   return (
     <>
-      <h1>Puppy Bowl</h1>
+      <HomePage />
     </>
   )
 }
